@@ -51,7 +51,7 @@
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body class="bg-[#f8fafc] text-gray-800 antialiased flex flex-col min-h-screen">
+<body class="bg-[#f8fafc] text-gray-800 antialiased flex flex-col min-h-screen overflow-x-hidden w-full max-w-full relative">
 
   <!-- ==================== TOP ANNOUNCEMENT BAR ==================== -->
   <div class="bg-dark-950 text-gray-300 text-xs py-2.5 px-4 border-b border-white/5">
@@ -183,12 +183,12 @@
   </header>
 
   <!-- ==================== HERO SECTION (DARK, MOODY, HIGH-OCTANE) ==================== -->
-  <section class="relative bg-dark-900 text-white pt-12 pb-24 md:pt-20 md:pb-36 overflow-hidden">
+  <section class="relative bg-dark-900 text-white pt-12 pb-24 md:pt-20 md:pb-36 overflow-hidden w-full max-w-full">
     <!-- Ambient Red Background Glow -->
     <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand-600/20 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-brand-800/15 rounded-full blur-[140px] pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full min-w-0">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- Left Hero Copy -->
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
@@ -296,10 +296,10 @@
   </section>
 
   <!-- ==================== FLOATING FILTER & SEARCH WIDGET (OVERLAPPING HERO) ==================== -->
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-14 relative z-20">
-    <div class="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100 p-4 sm:p-6">
+  <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-14 relative z-20 min-w-0">
+    <div class="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100 p-4 sm:p-6 w-full max-w-full overflow-hidden">
       <!-- Tabs (All Bikes, Used, New, Sports, Commuter) -->
-      <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pb-3 border-b border-gray-100 text-xs font-bold" id="hero-filter-tabs">
+      <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pb-3 border-b border-gray-100 text-xs font-bold w-full max-w-full min-w-0" id="hero-filter-tabs">
         <button type="button" class="hero-tab-btn whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-brand-600 text-white shadow-sm transition-all flex items-center gap-1.5" data-tab="all">
           <i class="fa-solid fa-motorcycle"></i> <span data-i18n="filter.tab_all">All Bikes</span>
         </button>
@@ -318,7 +318,7 @@
       </div>
 
       <!-- Dropdown Selectors Grid -->
-      <form id="hero-filter-form" action="inventory.html" method="GET" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 items-end">
+      <form id="hero-filter-form" action="inventory.html" method="GET" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-4 items-end w-full max-w-full">
         <!-- Brand Select -->
         <div>
           <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1" data-i18n="filter.brand_label">Brand</label>
@@ -394,7 +394,7 @@
       </div>
 
       <!-- Brands Carousel on Mobile / Grid on Desktop -->
-      <div class="flex gap-2.5 sm:gap-4 overflow-x-auto no-scrollbar pb-2 sm:grid sm:grid-cols-4 lg:grid-cols-7 snap-x">
+      <div class="flex gap-2.5 sm:gap-4 overflow-x-auto no-scrollbar pb-2 sm:grid sm:grid-cols-4 lg:grid-cols-7 snap-x w-full max-w-full min-w-0">
         <!-- Yamaha -->
         <a href="inventory.html?brand=yamaha" class="flex-shrink-0 w-24 sm:w-auto flex flex-col items-center justify-center p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-gray-50 hover:bg-red-50/50 border border-gray-100 hover:border-brand-200 transition-all group text-center snap-start">
           <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white shadow-sm flex items-center justify-center text-red-600 text-lg sm:text-xl group-hover:scale-110 transition-transform mb-1.5 sm:mb-2">
@@ -708,7 +708,7 @@
       <div class="relative">
         <div 
           id="testimonials-track" 
-          class="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar py-2 px-1"
+          class="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar py-2 px-1 w-full max-w-full min-w-0"
         >
           <!-- Review 1: Tanvir Ahmed -->
           <div class="testimonial-slide w-[85%] sm:w-[48%] lg:w-[31.5%] flex-shrink-0 snap-start p-5 sm:p-6 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col justify-between hover:border-brand-200 hover:shadow-lg transition-all">

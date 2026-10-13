@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body class="bg-[#f8fafc] text-gray-800 antialiased flex flex-col min-h-screen">
+<body class="bg-[#f8fafc] text-gray-800 antialiased flex flex-col min-h-screen overflow-x-hidden w-full max-w-full relative">
 
   <!-- ==================== TOP ANNOUNCEMENT BAR ==================== -->
   <div class="bg-dark-950 text-gray-300 text-xs py-2.5 px-4 border-b border-white/5">
@@ -159,7 +159,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <!-- Tabs -->
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:pb-0" id="inventory-filter-tabs">
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:pb-0 w-full max-w-full min-w-0" id="inventory-filter-tabs">
           <button type="button" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold transition-all bg-brand-600 text-white shadow-sm" data-tab="all" data-i18n="filter.tab_all">
             All Bikes
           </button>

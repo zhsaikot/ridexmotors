@@ -34,6 +34,9 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -41,9 +44,25 @@ body {
   background-color: #f8fafc;
   color: #1e293b;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Prevent horizontal overflow from flex/scroll containers */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+#hero-filter-tabs,
+#inventory-filter-tabs,
+#testimonials-track {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 /* Typography Helpers */
