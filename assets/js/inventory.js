@@ -1,5 +1,6 @@
 /**
  * RideX Motors - Inventory / Bikes Catalog Logic
+ * Responsive rendering for Mobile, Tablet, Laptop, and Desktop.
  * Multi-filter by brand, condition, price range, engine specs, search, and sorting.
  */
 
@@ -20,6 +21,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   let currentPriceRange = "all";
   let currentSort = "featured";
   let searchQuery = "";
+
+  // Check if we are on homepage
+  const isHomepage = !brandFilter;
 
   // Parse URL query params
   const urlParams = new URLSearchParams(window.location.search);
@@ -128,7 +132,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       filtered.sort((a, b) => parseInt(b.year || 0) - parseInt(a.year || 0));
     }
 
-    renderBikes(filtered);
+    // If on homepage without filters, show top 6 featured bikes
+    const displayBikes = isHomepage && currentBrand === "all" && currentTab === "all" && !searchQuery
+      ? filtered.slice(0, 6)
+      : filtered;
+
+    renderBikes(displayBikes);
 
     // Update Result count
     if (resultsCount) {
@@ -144,13 +153,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (bikes.length === 0) {
       const isBn = window.ridexI18n && window.ridexI18n.currentLang === "bn";
       bikesGrid.innerHTML = `
-        <div class="col-span-full py-20 text-center bg-white rounded-3xl border border-gray-100 shadow-sm p-8">
-          <div class="w-20 h-20 mx-auto rounded-full bg-red-50 flex items-center justify-center text-red-600 text-3xl mb-4">
+        <div class="col-span-full py-16 sm:py-20 text-center bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-red-50 flex items-center justify-center text-red-600 text-2xl sm:text-3xl mb-4">
             <i class="fa-solid fa-motorcycle"></i>
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">${isBn ? "কোনো বাইক পাওয়া যায়নি" : "No Motorcycles Found"}</h3>
-          <p class="text-gray-500 text-sm max-w-md mx-auto mb-6">${isBn ? "আপনার ফিল্টারের সাথে মিলে এমন কোনো মোটরসাইকেল বর্তমানে স্টকে নেই। ফিল্টার পরিবর্তন করে পুনরায় চেষ্টা করুন।" : "We couldn't find any bikes matching your selected criteria. Try adjusting your filters."}</p>
-          <button id="empty-reset-btn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-full text-xs font-bold transition-all shadow-md">
+          <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">${isBn ? "কোনো বাইক পাওয়া যায়নি" : "No Motorcycles Found"}</h3>
+          <p class="text-gray-500 text-xs sm:text-sm max-w-md mx-auto mb-6">${isBn ? "আপনার ফিল্টারের সাথে মিলে এমন কোনো মোটরসাইকেল বর্তমানে স্টকে নেই। ফিল্টার পরিবর্তন করে পুনরায় চেষ্টা করুন।" : "We couldn't find any bikes matching your selected criteria. Try adjusting your filters."}</p>
+          <button id="empty-reset-btn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 active:scale-95 text-white rounded-full text-xs font-bold transition-all shadow-md">
             ${isBn ? "সকল বাইক দেখুন" : "View All Bikes"}
           </button>
         </div>
@@ -169,90 +178,90 @@ document.addEventListener("DOMContentLoaded", async () => {
         const formattedPrice = window.ridexI18n ? window.ridexI18n.formatPrice(bike.price) : bike.price.toLocaleString("en-IN");
         const waUrl = window.createBikeWhatsAppUrl(bike);
         const conditionBadge = bike.condition === "New"
-          ? `<span class="bg-red-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">${isBn ? "নতুন" : "New"}</span>`
-          : `<span class="bg-slate-900 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">${isBn ? "ব্যবহৃত" : "Used"}</span>`;
+          ? `<span class="bg-red-600 text-white text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider shadow-sm">${isBn ? "নতুন" : "New"}</span>`
+          : `<span class="bg-slate-900 text-white text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider shadow-sm">${isBn ? "ব্যবহৃত" : "Used"}</span>`;
 
         return `
-          <div class="bike-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
-            <!-- Image & Badges Container -->
-            <div class="relative bg-slate-50 aspect-[16/11] overflow-hidden flex items-center justify-center p-4">
+          <div class="bike-card bg-white rounded-2xl sm:rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
+            <!-- Image & Badges Container (Responsive 16/10 aspect ratio) -->
+            <div class="relative bg-slate-900 aspect-[16/10] overflow-hidden flex items-center justify-center">
               <img 
                 src="${bike.image}" 
                 alt="${bike.name}" 
-                class="bike-img-zoom w-full h-full object-cover rounded-xl"
+                class="bike-img-zoom w-full h-full object-cover"
                 loading="lazy"
-                onerror="this.src='assets/images/logo.png'; this.classList.add('object-contain', 'p-8');"
+                onerror="this.src='assets/images/logo.png'; this.classList.add('object-contain', 'p-6');"
               />
               
               <!-- Top Condition Badge -->
-              <div class="absolute top-4 left-4 z-10 flex gap-2">
+              <div class="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 flex gap-2">
                 ${conditionBadge}
-                ${bike.badge ? `<span class="bg-white/90 backdrop-blur-sm text-gray-800 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm border border-gray-200">${bike.badge}</span>` : ''}
+                ${bike.badge ? `<span class="bg-white/90 backdrop-blur-sm text-gray-800 text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 sm:py-1 rounded-full shadow-sm border border-gray-200">${bike.badge}</span>` : ''}
               </div>
 
               <!-- Papers Verified Pill -->
-              <div class="absolute bottom-3 left-4 z-10">
-                <span class="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> ${isBn ? "কাগজ ভেরিফায়েড" : "Verified Papers"}
+              <div class="absolute bottom-3 left-3 sm:bottom-3 sm:left-4 z-10">
+                <span class="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-[9px] sm:text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
+                  <i class="fa-solid fa-circle-check text-[9px] sm:text-[10px]"></i> ${isBn ? "কাগজ ভেরিফায়েড" : "Verified Papers"}
                 </span>
               </div>
             </div>
 
-            <!-- Card Body Content -->
-            <div class="p-5 flex-1 flex flex-col justify-between">
+            <!-- Card Body Content (Responsive spacing for all viewports) -->
+            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
               <div>
                 <!-- Brand & Year -->
-                <div class="flex items-center justify-between text-xs text-gray-400 font-semibold mb-1.5">
-                  <span class="text-red-600 font-bold uppercase tracking-wider">${bike.brand}</span>
-                  <span>${bike.year || ''}</span>
+                <div class="flex items-center justify-between text-xs text-gray-400 font-semibold mb-1">
+                  <span class="text-red-600 font-bold uppercase tracking-wider text-[11px] sm:text-xs">${bike.brand}</span>
+                  <span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-[10px] sm:text-xs font-semibold">${bike.year || ''}</span>
                 </div>
 
                 <!-- Bike Name -->
-                <h3 class="font-heading font-extrabold text-gray-900 text-lg sm:text-xl line-clamp-1 group-hover:text-red-600 transition-colors">
+                <h3 class="font-heading font-extrabold text-gray-900 text-base sm:text-lg lg:text-xl line-clamp-1 group-hover:text-red-600 transition-colors">
                   <a href="bike-details.html?id=${bike.id}">${bike.name}</a>
                 </h3>
 
                 <!-- Price -->
-                <div class="mt-2.5 mb-4 flex items-baseline gap-2">
-                  <span class="text-2xl font-black text-gray-900 tracking-tight font-heading">
+                <div class="mt-2 mb-3.5 flex items-baseline gap-2">
+                  <span class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight font-heading">
                     ৳ ${formattedPrice}
                   </span>
-                  <span class="text-xs text-gray-400 font-medium">(${isBn ? "আলোচনা সাপেক্ষে" : "Fixed/Negotiable"})</span>
+                  <span class="text-[10px] sm:text-xs text-gray-400 font-medium">(${isBn ? "আলোচনা সাপেক্ষে" : "Negotiable"})</span>
                 </div>
 
-                <!-- Spec Pill Highlights (Matching Mockup) -->
-                <div class="grid grid-cols-3 gap-2 py-3 border-y border-gray-100 text-xs text-gray-600 font-medium text-center">
+                <!-- Spec Pill Highlights (Ultra-clean 3 columns on phone & desktop) -->
+                <div class="grid grid-cols-3 gap-1 py-2 sm:py-2.5 border-y border-gray-100 text-center">
                   <div class="flex flex-col items-center">
-                    <span class="text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "ইঞ্জিন" : "Engine"}</span>
-                    <span class="font-bold text-gray-800">${bike.engineCc || 'N/A'}</span>
+                    <span class="text-[9px] sm:text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "ইঞ্জিন" : "Engine"}</span>
+                    <span class="font-bold text-gray-800 text-[11px] sm:text-xs truncate max-w-full px-1">${bike.engineCc || 'N/A'}</span>
                   </div>
                   <div class="flex flex-col items-center border-x border-gray-100">
-                    <span class="text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "মাইলেজ" : "Mileage"}</span>
-                    <span class="font-bold text-gray-800">${bike.mileage ? bike.mileage.split(' ')[0] : 'N/A'}</span>
+                    <span class="text-[9px] sm:text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "মাইলেজ" : "Mileage"}</span>
+                    <span class="font-bold text-gray-800 text-[11px] sm:text-xs truncate max-w-full px-1">${bike.mileage ? bike.mileage.split(' ')[0] : 'N/A'}</span>
                   </div>
                   <div class="flex flex-col items-center">
-                    <span class="text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "ব্রেকিং" : "Brakes"}</span>
-                    <span class="font-bold text-gray-800 truncate max-w-full px-1">${bike.braking ? (bike.braking.includes('ABS') ? 'ABS' : 'Disc') : 'Disc'}</span>
+                    <span class="text-[9px] sm:text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "ব্রেকিং" : "Brakes"}</span>
+                    <span class="font-bold text-gray-800 text-[11px] sm:text-xs truncate max-w-full px-1">${bike.braking ? (bike.braking.includes('ABS') ? 'ABS' : 'Disc') : 'Disc'}</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Action Buttons -->
-              <div class="mt-5 grid grid-cols-2 gap-2">
+              <!-- Action Buttons (Touch optimized min 40px height) -->
+              <div class="mt-4 grid grid-cols-2 gap-2">
                 <a 
                   href="${waUrl}" 
                   target="_blank" 
                   rel="noopener"
-                  class="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-xl text-xs font-bold transition-all shadow-sm shadow-emerald-600/20"
+                  class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
                   title="Inquire directly on WhatsApp"
                 >
                   <i class="fa-brands fa-whatsapp text-sm"></i>
-                  <span>${isBn ? "হোয়াটসঅ্যাপ" : "WhatsApp"}</span>
+                  <span class="truncate">${isBn ? "হোয়াটসঅ্যাপ" : "WhatsApp"}</span>
                 </a>
 
                 <a 
                   href="bike-details.html?id=${bike.id}" 
-                  class="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-slate-900 hover:bg-red-600 active:scale-95 text-white rounded-xl text-xs font-bold transition-all"
+                  class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-slate-900 hover:bg-red-600 active:scale-95 text-white rounded-xl text-xs font-bold transition-all"
                 >
                   <span>${isBn ? "বিস্তারিত" : "Details"}</span>
                   <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -344,4 +353,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     applyFiltersAndRender();
   });
 });
-

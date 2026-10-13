@@ -1,6 +1,7 @@
 /* ==========================================================================
    RideX Motors - Premium Motorbike Showroom Stylesheet
    Theme: Racing Red & Sleek Dark Showroom
+   Responsive: Mobile, Tablet, Laptop, and Desktop
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -32,6 +33,7 @@
 /* Base Body Styles */
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -39,6 +41,9 @@ body {
   background-color: #f8fafc;
   color: #1e293b;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Typography Helpers */
@@ -53,11 +58,11 @@ body.lang-bn * {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #0b0f17;
 }
 ::-webkit-scrollbar-thumb {
   background: #dc2626;
@@ -71,22 +76,22 @@ body.lang-bn * {
 .bike-card {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.bike-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* Custom Image Zoom on Hover */
-.group:hover .bike-img-zoom {
-  transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .bike-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  .group:hover .bike-img-zoom {
+    transform: scale(1.06);
+  }
 }
 .bike-img-zoom {
-  transition: transform 0.4s ease;
+  transition: transform 0.45s ease;
 }
 
 /* Floating Glass effect */
 .glass-dark {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(11, 15, 23, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -100,23 +105,7 @@ body.lang-bn * {
 
 /* Badge Glow */
 .glow-red {
-  box-shadow: 0 0 20px rgba(220, 38, 38, 0.35);
-}
-
-/* Animation utilities */
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.85;
-    transform: scale(1.02);
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 3s infinite ease-in-out;
+  box-shadow: 0 0 18px rgba(220, 38, 38, 0.4);
 }
 
 /* Floating WhatsApp Button Pulse */
@@ -133,7 +122,9 @@ body.lang-bn * {
 }
 
 .wa-floating-btn {
-  animation: waWave 2s infinite;
+  animation: waWave 2.2s infinite;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  right: calc(1.5rem + env(safe-area-inset-right, 0px));
 }
 
 /* Hide scrollbar for category tabs / slider */
@@ -143,5 +134,44 @@ body.lang-bn * {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
+/* Mobile & Touch Responsive Enhancements */
+@media screen and (max-width: 768px) {
+  /* Prevent iOS auto-zoom on input focus */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Compact padding on mobile */
+  .hero-filter-container {
+    margin-top: -2.5rem !important;
+  }
+}
+
+/* Line clamp support */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tap Highlight Removal on Mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
