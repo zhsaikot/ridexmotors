@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startAutoPlay();
   }
 
-  // 6. Hero Popular Bikes Auto-Slider (1 Second Interval)
+  // 6. Hero Popular Bikes Auto-Slider (3.5 Seconds Interval)
   initHeroBikeSlider();
 });
 
@@ -307,7 +307,7 @@ function initHeroBikeSlider() {
 
   let currentIndex = 0;
   let timer = null;
-  const INTERVAL_MS = 1000; // 1 second auto slide as requested
+  const INTERVAL_MS = 3500; // 3.5 seconds auto slide as requested
 
   function goToSlide(index) {
     if (index < 0) index = slides.length - 1;
