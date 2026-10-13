@@ -178,93 +178,94 @@ document.addEventListener("DOMContentLoaded", async () => {
         const formattedPrice = window.ridexI18n ? window.ridexI18n.formatPrice(bike.price) : bike.price.toLocaleString("en-IN");
         const waUrl = window.createBikeWhatsAppUrl(bike);
         const conditionBadge = bike.condition === "New"
-          ? `<span class="bg-red-600 text-white text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider shadow-sm">${isBn ? "নতুন" : "New"}</span>`
-          : `<span class="bg-slate-900 text-white text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider shadow-sm">${isBn ? "ব্যবহৃত" : "Used"}</span>`;
+          ? `<span class="bg-red-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider shadow-sm">${isBn ? "নতুন" : "New"}</span>`
+          : `<span class="bg-slate-900/90 text-white text-[9px] sm:text-[11px] font-bold px-1.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider shadow-sm">${isBn ? "ব্যবহৃত" : "Used"}</span>`;
 
         return `
-          <div class="bike-card bg-white rounded-2xl sm:rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
-            <!-- Image & Badges Container (Responsive 16/10 aspect ratio) -->
+          <div class="bike-card bg-white rounded-xl sm:rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
+            <!-- Image & Badges Container (Responsive aspect ratio) -->
             <div class="relative bg-slate-900 aspect-[16/10] overflow-hidden flex items-center justify-center">
               <img 
                 src="${bike.image}" 
                 alt="${bike.name}" 
                 class="bike-img-zoom w-full h-full object-cover"
                 loading="lazy"
-                onerror="this.src='assets/images/logo.png'; this.classList.add('object-contain', 'p-6');"
+                onerror="this.src='assets/images/logo.png'; this.classList.add('object-contain', 'p-4');"
               />
               
               <!-- Top Condition Badge -->
-              <div class="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 flex gap-2">
+              <div class="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 flex gap-1 sm:gap-1.5">
                 ${conditionBadge}
-                ${bike.badge ? `<span class="bg-white/90 backdrop-blur-sm text-gray-800 text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 sm:py-1 rounded-full shadow-sm border border-gray-200">${bike.badge}</span>` : ''}
+                ${bike.badge ? `<span class="bg-white/95 backdrop-blur-sm text-gray-800 text-[8px] sm:text-[11px] font-bold px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-sm border border-gray-200 truncate max-w-[75px] sm:max-w-none">${bike.badge}</span>` : ''}
               </div>
 
               <!-- Papers Verified Pill -->
-              <div class="absolute bottom-3 left-3 sm:bottom-3 sm:left-4 z-10">
-                <span class="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-[9px] sm:text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
-                  <i class="fa-solid fa-circle-check text-[9px] sm:text-[10px]"></i> ${isBn ? "কাগজ ভেরিফায়েড" : "Verified Papers"}
+              <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 z-10">
+                <span class="inline-flex items-center gap-1 bg-emerald-600/95 backdrop-blur-sm text-white text-[8px] sm:text-[10px] font-bold px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full shadow-sm">
+                  <i class="fa-solid fa-circle-check text-[8px] sm:text-[10px]"></i>
+                  <span>${isBn ? "ভেরিফায়েড" : "Verified"}</span>
                 </span>
               </div>
             </div>
 
-            <!-- Card Body Content (Responsive spacing for all viewports) -->
-            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+            <!-- Card Body Content (Compact padding on phone, spacious on desktop) -->
+            <div class="p-2.5 sm:p-5 flex-1 flex flex-col justify-between">
               <div>
                 <!-- Brand & Year -->
-                <div class="flex items-center justify-between text-xs text-gray-400 font-semibold mb-1">
-                  <span class="text-red-600 font-bold uppercase tracking-wider text-[11px] sm:text-xs">${bike.brand}</span>
-                  <span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-[10px] sm:text-xs font-semibold">${bike.year || ''}</span>
+                <div class="flex items-center justify-between text-gray-400 font-semibold mb-0.5 sm:mb-1">
+                  <span class="text-red-600 font-bold uppercase tracking-wider text-[10px] sm:text-xs">${bike.brand}</span>
+                  <span class="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded text-[9px] sm:text-xs font-semibold">${bike.year || ''}</span>
                 </div>
 
-                <!-- Bike Name -->
-                <h3 class="font-heading font-extrabold text-gray-900 text-base sm:text-lg lg:text-xl line-clamp-1 group-hover:text-red-600 transition-colors">
+                <!-- Bike Name (Compact on mobile) -->
+                <h3 class="font-heading font-extrabold text-gray-900 text-xs sm:text-lg lg:text-xl line-clamp-1 group-hover:text-red-600 transition-colors" title="${bike.name}">
                   <a href="bike-details.html?id=${bike.id}">${bike.name}</a>
                 </h3>
 
                 <!-- Price -->
-                <div class="mt-2 mb-3.5 flex items-baseline gap-2">
-                  <span class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight font-heading">
+                <div class="mt-1 sm:mt-2 mb-2 sm:mb-3.5 flex flex-wrap items-baseline gap-1">
+                  <span class="text-sm sm:text-2xl font-black text-gray-900 tracking-tight font-heading">
                     ৳ ${formattedPrice}
                   </span>
-                  <span class="text-[10px] sm:text-xs text-gray-400 font-medium">(${isBn ? "আলোচনা সাপেক্ষে" : "Negotiable"})</span>
+                  <span class="text-[9px] sm:text-xs text-gray-400 font-medium">(${isBn ? "আলোচনা" : "Neg."})</span>
                 </div>
 
-                <!-- Spec Pill Highlights (Ultra-clean 3 columns on phone & desktop) -->
-                <div class="grid grid-cols-3 gap-1 py-2 sm:py-2.5 border-y border-gray-100 text-center">
+                <!-- Spec Pill Highlights (3 columns compact) -->
+                <div class="grid grid-cols-3 gap-0.5 sm:gap-1 py-1 sm:py-2.5 border-y border-gray-100 text-center">
                   <div class="flex flex-col items-center">
-                    <span class="text-[9px] sm:text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "ইঞ্জিন" : "Engine"}</span>
-                    <span class="font-bold text-gray-800 text-[11px] sm:text-xs truncate max-w-full px-1">${bike.engineCc || 'N/A'}</span>
+                    <span class="text-[8px] sm:text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "সিসি" : "Engine"}</span>
+                    <span class="font-bold text-gray-800 text-[10px] sm:text-xs truncate max-w-full px-0.5">${bike.engineCc || 'N/A'}</span>
                   </div>
                   <div class="flex flex-col items-center border-x border-gray-100">
-                    <span class="text-[9px] sm:text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "মাইলেজ" : "Mileage"}</span>
-                    <span class="font-bold text-gray-800 text-[11px] sm:text-xs truncate max-w-full px-1">${bike.mileage ? bike.mileage.split(' ')[0] : 'N/A'}</span>
+                    <span class="text-[8px] sm:text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "মাইলেজ" : "Mileage"}</span>
+                    <span class="font-bold text-gray-800 text-[10px] sm:text-xs truncate max-w-full px-0.5">${bike.mileage ? bike.mileage.split(' ')[0] : 'N/A'}</span>
                   </div>
                   <div class="flex flex-col items-center">
-                    <span class="text-[9px] sm:text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "ব্রেকিং" : "Brakes"}</span>
-                    <span class="font-bold text-gray-800 text-[11px] sm:text-xs truncate max-w-full px-1">${bike.braking ? (bike.braking.includes('ABS') ? 'ABS' : 'Disc') : 'Disc'}</span>
+                    <span class="text-[8px] sm:text-[10px] text-gray-400 font-semibold uppercase">${isBn ? "ব্রেক" : "Brakes"}</span>
+                    <span class="font-bold text-gray-800 text-[10px] sm:text-xs truncate max-w-full px-0.5">${bike.braking ? (bike.braking.includes('ABS') ? 'ABS' : 'Disc') : 'Disc'}</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Action Buttons (Touch optimized min 40px height) -->
-              <div class="mt-4 grid grid-cols-2 gap-2">
+              <!-- Action Buttons (Responsive for 2-column mobile and desktop) -->
+              <div class="mt-2.5 sm:mt-4 grid grid-cols-2 gap-1.5 sm:gap-2">
                 <a 
                   href="${waUrl}" 
                   target="_blank" 
                   rel="noopener"
-                  class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
+                  class="flex items-center justify-center gap-1 py-1.5 sm:py-2.5 px-1 sm:px-2 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold transition-all shadow-sm"
                   title="Inquire directly on WhatsApp"
                 >
-                  <i class="fa-brands fa-whatsapp text-sm"></i>
+                  <i class="fa-brands fa-whatsapp text-xs sm:text-sm"></i>
                   <span class="truncate">${isBn ? "হোয়াটসঅ্যাপ" : "WhatsApp"}</span>
                 </a>
 
                 <a 
                   href="bike-details.html?id=${bike.id}" 
-                  class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-slate-900 hover:bg-red-600 active:scale-95 text-white rounded-xl text-xs font-bold transition-all"
+                  class="flex items-center justify-center gap-1 py-1.5 sm:py-2.5 px-1 sm:px-2 bg-slate-900 hover:bg-red-600 active:scale-95 text-white rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold transition-all"
                 >
                   <span>${isBn ? "বিস্তারিত" : "Details"}</span>
-                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                  <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
                 </a>
               </div>
             </div>

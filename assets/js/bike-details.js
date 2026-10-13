@@ -159,12 +159,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const all = await window.ridexDB.getBikes();
     const related = all
       .filter((b) => b.id !== bike.id && ((b.category || '').toLowerCase() === (bike.category || '').toLowerCase() || b.brand === bike.brand))
-      .slice(0, 3);
+      .slice(0, 4);
 
     const isBn = window.ridexI18n && window.ridexI18n.currentLang === "bn";
 
     if (related.length === 0) {
-      const fallback = all.filter((b) => b.id !== bike.id).slice(0, 3);
+      const fallback = all.filter((b) => b.id !== bike.id).slice(0, 4);
       related.push(...fallback);
     }
 
@@ -172,22 +172,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       .map((relBike) => {
         const formattedPrice = window.ridexI18n ? window.ridexI18n.formatPrice(relBike.price) : relBike.price.toLocaleString("en-IN");
         return `
-        <a href="bike-details.html?id=${relBike.id}" class="bike-card bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col">
+        <a href="bike-details.html?id=${relBike.id}" class="bike-card bg-white rounded-xl sm:rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col">
           <div class="relative aspect-[16/10] bg-slate-50 overflow-hidden">
-            <img src="${relBike.image}" alt="${relBike.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <span class="absolute top-3 left-3 bg-slate-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
+            <img src="${relBike.image}" alt="${relBike.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='assets/images/logo.png'" />
+            <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-slate-900/90 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-full uppercase">
               ${relBike.condition || 'Used'}
             </span>
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between">
             <div>
-              <span class="text-[11px] font-bold text-red-600 uppercase">${relBike.brand}</span>
-              <h4 class="font-heading font-bold text-gray-900 text-base line-clamp-1 group-hover:text-red-600 transition-colors">${relBike.name}</h4>
+              <span class="text-[10px] sm:text-[11px] font-bold text-red-600 uppercase">${relBike.brand}</span>
+              <h4 class="font-heading font-bold text-gray-900 text-xs sm:text-base line-clamp-1 group-hover:text-red-600 transition-colors">${relBike.name}</h4>
             </div>
-            <div class="mt-3 flex items-center justify-between">
-              <span class="font-black text-gray-900 text-lg font-heading">৳ ${formattedPrice}</span>
-              <span class="text-xs text-red-600 font-bold flex items-center gap-1">
-                ${isBn ? "দেখুন" : "View"} <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            <div class="mt-2 sm:mt-3 flex items-center justify-between">
+              <span class="font-black text-gray-900 text-xs sm:text-lg font-heading">৳ ${formattedPrice}</span>
+              <span class="text-[10px] sm:text-xs text-red-600 font-bold flex items-center gap-1">
+                ${isBn ? "দেখুন" : "View"} <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
               </span>
             </div>
           </div>

@@ -131,7 +131,16 @@ const TRANSLATIONS = {
       r2_role: "Exchange Customer • Tangail",
       r3_text: "I was worried about second-hand bike papers, but RideX Motors verified everything from BRTA before handing over the keys. 10/10 service!",
       r3_author: "Sabbir Hossain",
-      r3_role: "Verified Buyer • Mirzapur"
+      r3_role: "Verified Buyer • Mirzapur",
+      r4_text: "Sakhipur's most reliable bike showroom. Condition was just like showroom new and got BRTA smart card without issues. Top notch!",
+      r4_author: "Mehedi Hasan",
+      r4_role: "Verified Buyer • Ghatail",
+      r5_text: "Wanted a reliable mileage bike on a reasonable budget. Highly appreciate their honest guidance and Motul lubricant recommendations.",
+      r5_author: "Md. Arifur Rahman",
+      r5_role: "Verified Buyer • Basail",
+      r6_text: "Visited multiple places for bike exchange, but got the most honest trade-in valuation at RideX Motors. Done on the spot!",
+      r6_author: "Shahin Alom",
+      r6_role: "Exchange Customer • Bhuapur"
     },
     tips: {
       tag: "LATEST STORIES & TIPS",
@@ -291,7 +300,16 @@ const TRANSLATIONS = {
       r2_role: "এক্সচেঞ্জ গ্রাহক • টাঙ্গাইল",
       r3_text: "সেকেন্ড হ্যান্ড বাইকের পেপারস নিয়ে আমার ভয় ছিল, কিন্তু রাইডেক্স মোটরসের ভাইয়েরা বিআরটিএ থেকে সব ক্লিয়ারেন্স চেক করে দিয়েছে।",
       r3_author: "সাব্বির হোসেন",
-      r3_role: "ভেরিফায়েড ক্রেতা • মির্জাপুর"
+      r3_role: "ভেরিফায়েড ক্রেতা • মির্জাপুর",
+      r4_text: "সখিপুরের মধ্যে সবচেয়ে বিশ্বস্ত বাইকের শোরুম। বাইকের কন্ডিশন শোরুমের নতুন বাইকের মতোই ফ্রেশ পেয়েছি। বিআরটিএ স্মার্ট কার্ড খুব দ্রুত পেয়েছি।",
+      r4_author: "মেহেদী হাসান",
+      r4_role: "ভেরিফায়েড ক্রেতা • ঘাটাইল",
+      r5_text: "কম বাজেটে দারুণ মাইলেজ বাইক নিতে চেয়েছিলাম। ভাইদের ব্যবহার ও সার্ভিসিং পরামর্শ খুবই ভালো লেগেছে। ধন্যবাদ RideX Motors!",
+      r5_author: "মো. আরিফুর রহমান",
+      r5_role: "ভেরিফায়েড ক্রেতা • বাসাইল",
+      r6_text: "বাইক এক্সচেঞ্জ নিয়ে অনেক জায়গায় ঘুরেছি, সঠিক দাম পাইনি। রাইডেক্স মোটরস ন্যায্য দাম দিয়ে সাথে সাথে এক্সচেঞ্জ করে দিয়েছে। বেস্ট শোরুম!",
+      r6_author: "শাহীন আলম",
+      r6_role: "এক্সচেঞ্জ গ্রাহক • ভূঞাপুর"
     },
     tips: {
       tag: "রাইডিং ও মেইনটেন্যান্স টিপস",
