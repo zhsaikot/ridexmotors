@@ -442,3 +442,4 @@ window.ridexT = (path) => window.ridexI18n.getTranslation(path);
 // Compatibility aliases
 window.hsI18n = window.ridexI18n;
 window.hsT = window.ridexT;
+

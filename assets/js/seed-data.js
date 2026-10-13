@@ -342,3 +342,4 @@ const SEED_BIKES = [
 // Helper to expose globally
 window.SEED_CATEGORIES = SEED_CATEGORIES;
 window.SEED_BIKES = SEED_BIKES;
+

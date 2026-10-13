@@ -575,3 +575,4 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start Auth Check
   checkAuthState();
 });
+

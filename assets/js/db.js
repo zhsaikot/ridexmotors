@@ -56,8 +56,10 @@ class RideXDB {
           });
           return cats;
         } else {
-          console.log("Firestore categories empty, seeding default categories...");
-          await this.seedCategories();
+          console.log("Firestore categories empty, using default seed categories...");
+          try {
+            await this.seedCategories();
+          } catch (e) {}
           return this.getLocalCategories();
         }
       } catch (err) {
@@ -153,8 +155,10 @@ class RideXDB {
           });
           return items;
         } else {
-          console.log("Firestore bikes empty, seeding initial bikes...");
-          await this.seedBikes();
+          console.log("Firestore bikes empty, using default seed bikes...");
+          try {
+            await this.seedBikes();
+          } catch (e) {}
           return this.getLocalBikes();
         }
       } catch (err) {
@@ -262,12 +266,16 @@ class RideXDB {
   async seedCategories() {
     if (typeof SEED_CATEGORIES === "undefined") return;
     if (this.isLiveFirestore()) {
-      const batch = window.RIDEX_FIREBASE.db.batch();
-      SEED_CATEGORIES.forEach((cat) => {
-        const ref = window.RIDEX_FIREBASE.db.collection(DB_CATEGORIES_COLLECTION).doc(cat.id);
-        batch.set(ref, cat);
-      });
-      await batch.commit();
+      try {
+        const batch = window.RIDEX_FIREBASE.db.batch();
+        SEED_CATEGORIES.forEach((cat) => {
+          const ref = window.RIDEX_FIREBASE.db.collection(DB_CATEGORIES_COLLECTION).doc(cat.id);
+          batch.set(ref, cat);
+        });
+        await batch.commit();
+      } catch (e) {
+        console.warn("Firestore seedCategories failed (auth rules). Using local storage.");
+      }
     }
     localStorage.setItem(CATEGORIES_STORAGE_KEY, JSON.stringify(SEED_CATEGORIES));
   }
@@ -275,12 +283,16 @@ class RideXDB {
   async seedBikes() {
     if (typeof SEED_BIKES === "undefined") return;
     if (this.isLiveFirestore()) {
-      const batch = window.RIDEX_FIREBASE.db.batch();
-      SEED_BIKES.forEach((bike) => {
-        const ref = window.RIDEX_FIREBASE.db.collection(DB_COLLECTION).doc(bike.id);
-        batch.set(ref, bike);
-      });
-      await batch.commit();
+      try {
+        const batch = window.RIDEX_FIREBASE.db.batch();
+        SEED_BIKES.forEach((bike) => {
+          const ref = window.RIDEX_FIREBASE.db.collection(DB_COLLECTION).doc(bike.id);
+          batch.set(ref, bike);
+        });
+        await batch.commit();
+      } catch (e) {
+        console.warn("Firestore seedBikes failed (auth rules). Using local storage.");
+      }
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(SEED_BIKES));
   }
