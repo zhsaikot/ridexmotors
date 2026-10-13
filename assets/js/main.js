@@ -288,5 +288,105 @@ document.addEventListener("DOMContentLoaded", () => {
 
     startAutoPlay();
   }
+
+  // 6. Hero Popular Bikes Auto-Slider (1 Second Interval)
+  initHeroBikeSlider();
 });
+
+// ==================== HERO POPULAR BIKES AUTO-SLIDER ====================
+function initHeroBikeSlider() {
+  const slider = document.getElementById("hero-bike-slider");
+  if (!slider) return;
+
+  const slides = slider.querySelectorAll(".hero-bike-slide");
+  const dots = slider.querySelectorAll(".hero-dot");
+  const prevBtn = document.getElementById("hero-slider-prev");
+  const nextBtn = document.getElementById("hero-slider-next");
+
+  if (!slides.length) return;
+
+  let currentIndex = 0;
+  let timer = null;
+  const INTERVAL_MS = 1000; // 1 second auto slide as requested
+
+  function goToSlide(index) {
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    currentIndex = index;
+
+    slides.forEach((slide, i) => {
+      if (i === currentIndex) {
+        slide.classList.remove("opacity-0", "scale-95", "pointer-events-none", "z-0");
+        slide.classList.add("opacity-100", "scale-100", "pointer-events-auto", "z-10");
+      } else {
+        slide.classList.remove("opacity-100", "scale-100", "pointer-events-auto", "z-10");
+        slide.classList.add("opacity-0", "scale-95", "pointer-events-none", "z-0");
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === currentIndex) {
+        dot.className = "hero-dot w-5 h-1.5 rounded-full bg-brand-500 transition-all duration-300";
+      } else {
+        dot.className = "hero-dot w-1.5 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300";
+      }
+    });
+  }
+
+  function startTimer() {
+    stopTimer();
+    timer = setInterval(() => {
+      goToSlide(currentIndex + 1);
+    }, INTERVAL_MS);
+  }
+
+  function stopTimer() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function resetTimer() {
+    stopTimer();
+    startTimer();
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goToSlide(currentIndex - 1);
+      resetTimer();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goToSlide(currentIndex + 1);
+      resetTimer();
+    });
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const idx = parseInt(dot.getAttribute("data-slide"), 10);
+      goToSlide(idx);
+      resetTimer();
+    });
+  });
+
+  slider.addEventListener("mouseenter", stopTimer);
+  slider.addEventListener("mouseleave", startTimer);
+  slider.addEventListener("touchstart", stopTimer, { passive: true });
+  slider.addEventListener("touchend", startTimer, { passive: true });
+
+  // Start with first slide and run auto-slider
+  goToSlide(0);
+  startTimer();
+}
 

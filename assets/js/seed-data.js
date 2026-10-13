@@ -113,9 +113,9 @@ const SEED_BIKES = [
     badge: "Hot Deal",
     featured: true,
     isPopular: true,
-    image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=80",
+    image: "assets/images/bikes/yamaha-r15.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=80",
+      "assets/images/bikes/yamaha-r15.jpg",
       "assets/images/showroom-interior.jpg"
     ],
     description: "রানিং সুপার স্পোর্টস বাইক Yamaha R15 V4। আকর্ষণীয় রেসিং ব্লু কালার, কুইক শিফটার ও গোল্ডেন ইউএসডি ফর্কস সহ ফুল লোডেড। কোনো দাগ বা স্ক্র্যাচ নেই, একদম নতুনের মতো ফ্রেশ।",
@@ -144,9 +144,9 @@ const SEED_BIKES = [
     badge: "Popular",
     featured: true,
     isPopular: true,
-    image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80",
+    image: "assets/images/bikes/suzuki-gixxer.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80",
+      "assets/images/bikes/suzuki-gixxer.jpg",
       "assets/images/showroom-exterior.jpg"
     ],
     description: "সুজুকি জিক্সার এসএফ এফআই স্পোর্টস ফেয়ারিং বাইক। অ্যারোডাইনামিক লুক, দুর্দান্ত এক্সিলারেশন এবং আরামদায়ক রাইডিং পজিশন। শোরুমে এসে সরাসরি দেখে পছন্দ করুন।",
@@ -175,9 +175,9 @@ const SEED_BIKES = [
     badge: "Top Seller",
     featured: true,
     isPopular: true,
-    image: "https://images.unsplash.com/photo-1609630875171-b1321377ee65?auto=format&fit=crop&w=800&q=80",
+    image: "assets/images/bikes/bajaj-pulsar.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1609630875171-b1321377ee65?auto=format&fit=crop&w=800&q=80"
+      "assets/images/bikes/bajaj-pulsar.jpg"
     ],
     description: "বাংলাদেশের সর্বাধিক জনপ্রিয় বাইক বাজাজ পালসার ১৫০ টুইন ডিস্ক। নিখুঁত সাসপেনশন, চমৎকার পিকআপ ও মাইলেজ। সম্পূর্ণ ইঞ্জিন সাউন্ড সুপার স্মুথ।",
     features: [
@@ -205,9 +205,9 @@ const SEED_BIKES = [
     badge: "Performance",
     featured: true,
     isPopular: true,
-    image: "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?auto=format&fit=crop&w=800&q=80",
+    image: "assets/images/bikes/tvs-apache.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?auto=format&fit=crop&w=800&q=80"
+      "assets/images/bikes/tvs-apache.jpg"
     ],
     description: "রেসিং ডিএনএ সম্পন্ন টিভিএস অ্যাপাচি আরটিআর ১৬০ ৪ভি। ব্লুটুথ কানেক্টিভিটি (SmartXonnect), ডিজিটাল ক্লাস্টার এবং এগ্রেসিভ সাউন্ড।",
     features: [

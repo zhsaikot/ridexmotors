@@ -264,29 +264,163 @@
           </div>
         </div>
 
-        <!-- Right Hero Visual (Motorcycle Feature) -->
+        <!-- Right Hero Visual (Motorcycle Feature Slider - Auto slides 5 popular bikes every 1s) -->
         <div class="lg:col-span-5 relative">
           <div class="relative mx-auto max-w-md lg:max-w-none">
             <!-- Glow under bike -->
-            <div class="absolute inset-0 bg-gradient-to-tr from-brand-600/30 to-amber-500/20 rounded-3xl blur-2xl transform scale-95"></div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-brand-600/30 to-amber-500/20 rounded-3xl blur-2xl transform scale-95 pointer-events-none"></div>
             
-            <!-- Hero Bike Image Card -->
-            <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-dark-800/80 p-3 group">
-              <img 
-                src="assets/images/bikes/hero-splendor-plus.jpg" 
-                alt="RideX Motors Showroom Motorcycle" 
-                class="w-full h-56 sm:h-72 lg:h-80 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
-              />
-              
-              <!-- Floating Pill on Bike Image -->
-              <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl glass-dark flex items-center justify-between">
-                <div>
-                  <span class="text-[10px] text-brand-400 font-bold uppercase tracking-wider block">Hot In Stock</span>
-                  <h4 class="text-sm font-bold text-white">Hero Splendor+ & Yamaha Series</h4>
+            <!-- Hero Bike Slider Card -->
+            <div id="hero-bike-slider" class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-dark-800/80 p-3 group select-none">
+              <!-- Viewport -->
+              <div class="relative w-full h-60 sm:h-72 lg:h-80 overflow-hidden rounded-2xl bg-dark-950">
+                
+                <!-- Slide 1: Hero Splendor+ -->
+                <div class="hero-bike-slide absolute inset-0 transition-all duration-500 ease-in-out opacity-100 scale-100 z-10 pointer-events-auto" data-index="0">
+                  <a href="bike-details.html?id=hero-splendor-plus-red" class="block w-full h-full relative group/slide">
+                    <img 
+                      src="assets/images/bikes/hero-splendor-plus.jpg" 
+                      alt="Hero Splendor+ Self i3S" 
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover/slide:scale-105"
+                      loading="eager"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/20 to-transparent"></div>
+                    <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-dark-950/70 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white shadow-lg">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span>Best Mileage</span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 p-3 sm:p-3.5 rounded-2xl glass-dark flex items-center justify-between gap-3 border border-white/10 shadow-xl">
+                      <div class="min-w-0">
+                        <span class="text-[10px] text-brand-400 font-bold uppercase tracking-wider block">Hot In Stock</span>
+                        <h4 class="text-xs sm:text-sm font-bold text-white truncate">Hero Splendor+ Self i3S</h4>
+                      </div>
+                      <span class="px-2.5 py-1 bg-brand-600 text-white text-[11px] sm:text-xs font-black rounded-lg whitespace-nowrap shadow-sm">
+                        ৳ ৭৮,০০০
+                      </span>
+                    </div>
+                  </a>
                 </div>
-                <span class="px-3 py-1 bg-brand-600 text-white text-xs font-black rounded-lg">
-                  Sakhipur Stock
-                </span>
+
+                <!-- Slide 2: Yamaha R15 V4 -->
+                <div class="hero-bike-slide absolute inset-0 transition-all duration-500 ease-in-out opacity-0 scale-95 pointer-events-none z-0" data-index="1">
+                  <a href="bike-details.html?id=yamaha-r15-v4-racing-blue" class="block w-full h-full relative group/slide">
+                    <img 
+                      src="assets/images/bikes/yamaha-r15.jpg" 
+                      alt="Yamaha R15 V4 Racing Blue" 
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover/slide:scale-105"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/20 to-transparent"></div>
+                    <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-dark-950/70 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white shadow-lg">
+                      <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                      <span>Hot Deal</span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 p-3 sm:p-3.5 rounded-2xl glass-dark flex items-center justify-between gap-3 border border-white/10 shadow-xl">
+                      <div class="min-w-0">
+                        <span class="text-[10px] text-brand-400 font-bold uppercase tracking-wider block">Racing Sports</span>
+                        <h4 class="text-xs sm:text-sm font-bold text-white truncate">Yamaha R15 V4 Racing Blue</h4>
+                      </div>
+                      <span class="px-2.5 py-1 bg-brand-600 text-white text-[11px] sm:text-xs font-black rounded-lg whitespace-nowrap shadow-sm">
+                        ৳ ৪,৬৫,০০০
+                      </span>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Slide 3: Suzuki Gixxer SF Fi -->
+                <div class="hero-bike-slide absolute inset-0 transition-all duration-500 ease-in-out opacity-0 scale-95 pointer-events-none z-0" data-index="2">
+                  <a href="bike-details.html?id=suzuki-gixxer-sf-blue" class="block w-full h-full relative group/slide">
+                    <img 
+                      src="assets/images/bikes/suzuki-gixxer.jpg" 
+                      alt="Suzuki Gixxer SF Fi" 
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover/slide:scale-105"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/20 to-transparent"></div>
+                    <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-dark-950/70 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white shadow-lg">
+                      <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                      <span>Popular</span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 p-3 sm:p-3.5 rounded-2xl glass-dark flex items-center justify-between gap-3 border border-white/10 shadow-xl">
+                      <div class="min-w-0">
+                        <span class="text-[10px] text-brand-400 font-bold uppercase tracking-wider block">Aerodynamic Fi</span>
+                        <h4 class="text-xs sm:text-sm font-bold text-white truncate">Suzuki Gixxer SF Fi Disc</h4>
+                      </div>
+                      <span class="px-2.5 py-1 bg-brand-600 text-white text-[11px] sm:text-xs font-black rounded-lg whitespace-nowrap shadow-sm">
+                        ৳ ২,১৫,০০০
+                      </span>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Slide 4: Bajaj Pulsar 150 -->
+                <div class="hero-bike-slide absolute inset-0 transition-all duration-500 ease-in-out opacity-0 scale-95 pointer-events-none z-0" data-index="3">
+                  <a href="bike-details.html?id=bajaj-pulsar-150-twin-disc" class="block w-full h-full relative group/slide">
+                    <img 
+                      src="assets/images/bikes/bajaj-pulsar.jpg" 
+                      alt="Bajaj Pulsar 150 Twin Disc" 
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover/slide:scale-105"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/20 to-transparent"></div>
+                    <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-dark-950/70 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white shadow-lg">
+                      <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                      <span>Top Seller</span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 p-3 sm:p-3.5 rounded-2xl glass-dark flex items-center justify-between gap-3 border border-white/10 shadow-xl">
+                      <div class="min-w-0">
+                        <span class="text-[10px] text-brand-400 font-bold uppercase tracking-wider block">DTS-i Power</span>
+                        <h4 class="text-xs sm:text-sm font-bold text-white truncate">Bajaj Pulsar 150 Twin Disc</h4>
+                      </div>
+                      <span class="px-2.5 py-1 bg-brand-600 text-white text-[11px] sm:text-xs font-black rounded-lg whitespace-nowrap shadow-sm">
+                        ৳ ১,৪৮,০০০
+                      </span>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Slide 5: TVS Apache RTR 160 4V -->
+                <div class="hero-bike-slide absolute inset-0 transition-all duration-500 ease-in-out opacity-0 scale-95 pointer-events-none z-0" data-index="4">
+                  <a href="bike-details.html?id=tvs-apache-rtr-160-4v" class="block w-full h-full relative group/slide">
+                    <img 
+                      src="assets/images/bikes/tvs-apache.jpg" 
+                      alt="TVS Apache RTR 160 4V" 
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover/slide:scale-105"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/20 to-transparent"></div>
+                    <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-dark-950/70 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white shadow-lg">
+                      <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                      <span>Racing DNA</span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 p-3 sm:p-3.5 rounded-2xl glass-dark flex items-center justify-between gap-3 border border-white/10 shadow-xl">
+                      <div class="min-w-0">
+                        <span class="text-[10px] text-brand-400 font-bold uppercase tracking-wider block">SmartXonnect</span>
+                        <h4 class="text-xs sm:text-sm font-bold text-white truncate">TVS Apache RTR 160 4V</h4>
+                      </div>
+                      <span class="px-2.5 py-1 bg-brand-600 text-white text-[11px] sm:text-xs font-black rounded-lg whitespace-nowrap shadow-sm">
+                        ৳ ১,৭৫,০০০
+                      </span>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Top Right Dots Navigation Indicator -->
+                <div id="hero-slider-dots" class="absolute top-4 right-4 z-20 flex items-center gap-1.5 bg-dark-950/70 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/15">
+                  <button type="button" class="hero-dot w-5 h-1.5 rounded-full bg-brand-500 transition-all duration-300" data-slide="0" aria-label="Hero Splendor+"></button>
+                  <button type="button" class="hero-dot w-1.5 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300" data-slide="1" aria-label="Yamaha R15"></button>
+                  <button type="button" class="hero-dot w-1.5 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300" data-slide="2" aria-label="Suzuki Gixxer"></button>
+                  <button type="button" class="hero-dot w-1.5 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300" data-slide="3" aria-label="Bajaj Pulsar"></button>
+                  <button type="button" class="hero-dot w-1.5 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300" data-slide="4" aria-label="TVS Apache"></button>
+                </div>
+
+                <!-- Left & Right Arrow controls (visible on group hover / desktop) -->
+                <button id="hero-slider-prev" type="button" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-dark-950/70 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-sm border border-white/10 opacity-0 group-hover:opacity-100 transition-all active:scale-95" aria-label="Previous bike">
+                  <i class="fa-solid fa-chevron-left text-xs"></i>
+                </button>
+                <button id="hero-slider-next" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-dark-950/70 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-sm border border-white/10 opacity-0 group-hover:opacity-100 transition-all active:scale-95" aria-label="Next bike">
+                  <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
               </div>
             </div>
           </div>
