@@ -65,14 +65,56 @@ body {
   min-width: 0;
 }
 
-/* Typography Helpers */
+/* Typography & Language Support */
 .font-heading {
   font-family: var(--font-heading);
 }
 
-body.lang-bn,
-body.lang-bn * {
+body.lang-bn {
   font-family: var(--font-bn), var(--font-sans);
+}
+
+/* Ensure Bengali font applies to text elements */
+body.lang-bn input,
+body.lang-bn textarea,
+body.lang-bn select,
+body.lang-bn button,
+body.lang-bn p,
+body.lang-bn span,
+body.lang-bn a,
+body.lang-bn h1,
+body.lang-bn h2,
+body.lang-bn h3,
+body.lang-bn h4,
+body.lang-bn h5,
+body.lang-bn h6,
+body.lang-bn li,
+body.lang-bn label,
+body.lang-bn td,
+body.lang-bn th {
+  font-family: var(--font-bn), var(--font-sans);
+}
+
+/* Strictly protect FontAwesome icon glyphs across entire site */
+body.lang-bn i,
+body.lang-bn .fa,
+body.lang-bn .fas,
+body.lang-bn .far,
+body.lang-bn .fab,
+body.lang-bn .fa-solid,
+body.lang-bn .fa-regular,
+body.lang-bn .fa-brands,
+body.lang-bn [class*="fa-"],
+body.lang-bn [class*="fa-"]::before,
+body.lang-bn [class*="fa-"]::after {
+  font-family: "Font Awesome 6 Free" !important;
+}
+
+body.lang-bn .fa-brands,
+body.lang-bn .fa-brands::before,
+body.lang-bn [class*="fa-brands"],
+body.lang-bn [class*="fa-brands"]::before {
+  font-family: "Font Awesome 6 Brands" !important;
 }
 
 /* Custom Scrollbar */

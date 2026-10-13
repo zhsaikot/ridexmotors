@@ -404,7 +404,24 @@ class RideXI18n {
       if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
         el.placeholder = text;
       } else {
-        el.textContent = text;
+        const icon = el.querySelector("i, svg, [class*='fa-']");
+        const innerSpan = el.querySelector("span:not([class*='fa'])");
+        if (innerSpan) {
+          innerSpan.textContent = text;
+        } else if (icon) {
+          const iconClone = icon.cloneNode(true);
+          const iconIsFirst = el.firstElementChild === icon;
+          el.innerHTML = "";
+          if (iconIsFirst) {
+            el.appendChild(iconClone);
+            el.appendChild(document.createTextNode(" " + text));
+          } else {
+            el.appendChild(document.createTextNode(text + " "));
+            el.appendChild(iconClone);
+          }
+        } else {
+          el.textContent = text;
+        }
       }
     });
 
